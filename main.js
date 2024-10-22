@@ -80,8 +80,6 @@ function displayingResults(monthlyPayments, totalPayments) {
     const resultsH2 = document.querySelector("#resultsH2");
     const resultsP = document.querySelector("#resultsP");
 
-
-
     resultsH2.innerHTML = "Your Results";
     resultsP.innerHTML = "We have calculated your results. We have some exciting insights to share with you. Based on the data, we have identified key trends and patterns that will provide you with a deeper understanding of your performance.";
 
@@ -97,7 +95,6 @@ function displayingResults(monthlyPayments, totalPayments) {
 
     const addPResults = document.createElement("p");
     addPResults.innerHTML = "Your montly payment:";
-
 
     const addH2Results = document.createElement("h2");
     addH2Results.classList.add("font-bold", "text-2xl", "mb-5");
@@ -115,14 +112,12 @@ function displayingResults(monthlyPayments, totalPayments) {
     total2Results.classList.add("font-bold", "text-xl");
     total2Results.innerHTML = `€ ${totalPayments}`;
 
-
-
     resultsSelector.appendChild(addDivWithResults);
     addDivWithResults.appendChild(addPResults);
     addDivWithResults.appendChild(addH2Results);
 
     addDivWithResults.appendChild(addHRResults);
-
+    
     addDivWithResults.appendChild(totalPResults);
     addDivWithResults.appendChild(total2Results);
 }
