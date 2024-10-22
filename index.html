@@ -6,51 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mortgage calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 
 <body>
 
-    <main class="flex md:h-screen md:w-screen w-full min-h-screen py-5 justify-center items-center bg-[#e3f4fc]">
-        <div class="flex bg-white w-full mx-5 md:w-2/3 flex-col md:flex-row rounded-2xl overflow-hidden">
+    <main role="main" class="flex md:h-screen md:w-screen w-full min-h-screen py-5 justify-center items-center bg-[#e3f4fc]">
+        <div class="flex bg-white w-full mx-5 md:w-2/3 flex-col gap-5 md:flex-row rounded-2xl overflow-hidden">
             <div class="p-5 md:w-1/2 w-full">
                 <div class="flex items-center justify-between mb-5">
                     <h1 class="font-bold text-xl">Mortgage calculator</h1>
                     <button id="clearAll" class="z-20" onclick="clearAll()">Clear all</button>
                 </div>
 
-                <form action="">
+                <form action="" aria-labelledby="form-header">
 
-                    <div id="error_messages">
-
+                    <div id="error_messages" aria-live="polite">
+                        <!-- Error messages go here -->
                     </div>
 
                     <label for="amount" class="flex flex-col gap-3">Mortgage amount
                         <div class="flex">
                             <span
-                                class="bg-[#e3f4fc] border-[#adbac0] border-r-0 border-2 rounded-l-lg font-bold py-1 px-2">€</span>
-                            <input class="border-[#adbac0] border-2 border-l-0 pl-2 rounded-r-lg" type="text" name="amount" required
-                                id="amount" />
+                                class="bg-[#e3f4fc] border-[#adbac0] border-r-0 border-2 rounded-l-lg font-bold py-1 px-2" aria-hidden="true">€</span>
+                            <input class="border-[#adbac0] border-2 border-l-0 pl-2 rounded-r-lg" type="text"
+                                name="amount" required id="amount" aria-required="true" aria-label="Enter the mortgage amount in euros" />
                         </div>
                     </label>
 
                     <div class="flex gap-3 mt-4 md:flex-row flex-col">
                         <label for="term" class="flex flex-col gap-3">Mortgage term
-
                             <div class="flex">
-                                <input size="10" type="text" class="border-[#adbac0] border-2 pl-2 border-r-0 rounded-l-lg "
-                                    name="term" id="term" required />
+                                <input size="10" type="text"
+                                    class="border-[#adbac0] border-2 pl-2 border-r-0 rounded-l-lg" name="term"
+                                    id="term" required aria-required="true" aria-label="Enter the mortgage term in years" />
                                 <span
-                                    class="bg-[#e3f4fc] border-[#adbac0] border-l-0 border-2 rounded-r-lg font-bold py-1 px-2">years</span>
+                                    class="bg-[#e3f4fc] border-[#adbac0] border-l-0 border-2 rounded-r-lg font-bold py-1 px-2" aria-hidden="true">years</span>
                             </div>
                         </label>
 
                         <label for="rate" class="flex flex-col gap-3">Interest rate
                             <div class="flex">
-                                <input size="10" type="text" class="border-[#adbac0] border-2 border-r-0 pl-2 rounded-l-lg "
-                                    name="term" id="rate" required />
+                                <input size="10" type="text"
+                                    class="border-[#adbac0] border-2 border-r-0 pl-2 rounded-l-lg" name="rate"
+                                    id="rate" required aria-required="true" aria-label="Enter the interest rate percentage" />
                                 <span
-                                    class="bg-[#e3f4fc] border-[#adbac0] border-l-0 border-2 rounded-r-lg font-bold py-1 px-2">%</span>
+                                    class="bg-[#e3f4fc] border-[#adbac0] border-l-0 border-2 rounded-r-lg font-bold py-1 px-2" aria-hidden="true">%</span>
                             </div>
                         </label>
                     </div>
@@ -61,16 +61,16 @@
                         <div class="flex flex-col gap-2 mt-3">
                             <label for="repayment"
                                 class="relative flex gap-2 items-center border-2 rounded px-4 py-2 w-full font-bold cursor-pointer">
-                                <input type="radio" name="type" id="type"
-                                    class="absolute inset-0 opacity-0 cursor-pointer peer">
+                                <input type="radio" name="type" id="repayment"
+                                    class="absolute inset-0 opacity-0 cursor-pointer peer" aria-required="true">
                                 <span
                                     class="w-6 h-6 rounded-full border-2 block transition-colors duration-200 ease-in-out peer-checked:bg-black"></span>
                                 Repayment
                             </label>
 
-                            <label for="repayment"
+                            <label for="interestOnly"
                                 class="relative flex gap-2 items-center border-2 rounded px-4 py-2 w-full font-bold cursor-pointer">
-                                <input type="radio" name="type" id="type"
+                                <input type="radio" name="type" id="interestOnly"
                                     class="absolute inset-0 opacity-0 cursor-pointer peer">
                                 <span
                                     class="w-6 h-6 rounded-full border-2 block transition-colors duration-200 ease-in-out peer-checked:bg-black"></span>
@@ -81,14 +81,14 @@
                     </div>
 
                     <button class="bg-black py-2 px-4 text-white mt-4 rounded" onclick="calculate(event)"
-                        type="submit">Calculate repayments</button>
+                        type="submit" aria-label="Calculate repayments">Calculate repayments</button>
 
                 </form>
 
             </div>
 
             <div id="results"
-                class="bg-[#133040] flex justify-center items-center flex-col w-full md:rounded-bl-[100px] rounded-bl-5 h-full p-5 text-center text-white ">
+                class="bg-[#133040] flex justify-center items-center flex-col w-full md:rounded-bl-[100px] rounded-bl-5 h-auto p-5 text-center text-white">
                 <h2 id="resultsH2" class="font-bold text-2xl pb-5">Result shown here</h2>
                 <p id="resultsP">
                     Complete the form and click "calculate payment" to see what your
@@ -102,3 +102,4 @@
 </body>
 
 </html>
+\
